@@ -1,8 +1,10 @@
+import CreateItem from '../components/CreateItem'
+
 
 const Sell = () => {
     return (
         <>
-            <h1>Sell</h1>
+            <CreateItem/>
         </>
 
     )
