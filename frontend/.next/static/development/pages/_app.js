@@ -49105,8 +49105,8 @@ function (_App) {
   _createClass(MyApp, [{
     key: "render",
     value: function render() {
-      // Component is injected by Next.js
-      // into this component as a prop
+      // Component is injected by Next.js into this component as a prop
+      // The Component prop is a wrapper for page components in the pages folder
       var _this$props = this.props,
           Component = _this$props.Component,
           apollo = _this$props.apollo,

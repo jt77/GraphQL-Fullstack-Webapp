@@ -7,14 +7,26 @@ const Mutations = {
         }, info)
 
         return item
+    },
+    updateItem(parent, args, ctx, info) {
+        // take a copy of the updates
+        const updates = {...args}
+        // remove the id from the updates
+        delete updates.id
+        // run the updates method
+        // the signature for this mutation method can be
+        // found by the same name in the auto generated
+        // schema file under the Mutation category
+        return ctx.db.mutation.updateItem(
+            {
+                data: updates,
+                where: {
+                    id: args.id
+                }
+            },
+            info
+        )
     }
-    // createDog(parent, args, ctx, info) {
-    //     global.dogs = global.dogs || []
-    //
-    //     const newDog = {name: args.name}
-    //     global.dogs.push(newDog)
-    //     return newDog
-    // }
 };
 
 module.exports = Mutations;

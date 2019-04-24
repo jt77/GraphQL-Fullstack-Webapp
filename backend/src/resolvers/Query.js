@@ -1,15 +1,17 @@
 // this module allows you to pass queries directly
 // to prisma without running any logic or authentication
-// first.  below is the simple query using this module
-// and the fully fleshed out query commented out
+// first.
 const {forwardTo} = require('prisma-binding')
 
 const Query = {
-    items: forwardTo('db')
+    // below is the simple way to do the query
+    // and the fully fleshed out version is commented out
+    items: forwardTo('db'),
     // async items(parent, args, ctx, info) {
     //     const items = await ctx.db.query.items()
     //     return items
     // }
+    item: forwardTo('db')
 };
 
 module.exports = Query;

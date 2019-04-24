@@ -26,8 +26,8 @@ class MyApp extends App {
     }
 
     render() {
-        // Component is injected by Next.js
-        // into this component as a prop
+        // Component is injected by Next.js into this component as a prop
+        // The Component prop is a wrapper for page components in the pages folder
         const { Component, apollo, pageProps } = this.props
 
         return (
