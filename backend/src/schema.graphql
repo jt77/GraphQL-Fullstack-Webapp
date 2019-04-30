@@ -23,9 +23,10 @@ type Mutation {
 }
 
 type Query {
-    items: [Item]!
+    items(where: ItemWhereInput, orderBy: ItemOrderByInput, skip: Int, first: Int): [Item]!
     # the ItemWhereUniqueInput type below was auto generated
     # by prisma and so we're just using it to maintain
     # consistency between this schema and that one
     item(where: ItemWhereUniqueInput!): Item
+    itemsConnection(where: ItemWhereInput): ItemConnection!
 }
