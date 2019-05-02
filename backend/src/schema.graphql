@@ -30,4 +30,5 @@ type Query {
     # consistency between this schema and that one
     item(where: ItemWhereUniqueInput!): Item
     itemsConnection(where: ItemWhereInput): ItemConnection!
+    me: User
 }

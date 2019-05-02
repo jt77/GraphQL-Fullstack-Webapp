@@ -12,7 +12,19 @@ const Query = {
     //     return items
     // }
     item: forwardTo('db'),
-    itemsConnection: forwardTo('db')
+    itemsConnection: forwardTo('db'),
+    // ES6 syntax that allows assigning a prop name to a value like a function
+    // otherwise it would look like: me: function(...)
+    me(parent, args, ctx, info) {
+        //check if there is a current user Id
+        if (!ctx.request.userId) {
+            return null
+        }
+
+        return ctx.db.query.user({
+            where: {id: ctx.request.userId}
+        }, info)
+    }
 };
 
 module.exports = Query;
