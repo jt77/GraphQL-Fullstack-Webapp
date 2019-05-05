@@ -65,6 +65,39 @@ const Mutations = {
 
         // return user
         return user
+    },
+    async signin(parent, {email, password}, ctx, info) {
+
+        // check if there is a user with that email
+        const user = await ctx.db.query.user({where: {email}})
+        if (!user) {
+            throw new Error(`No such user found for email ${email}`)
+        }
+
+        // check if their password is correct
+        const valid = await bcrypt.compare(password, user.password)
+        if (!valid) {
+            throw new Error('Invalid Password')
+        }
+
+        // generate the jwt token
+        const token = jwt.sign({userId: user.id}, process.env.APP_SECRET)
+
+        // set the cookie with the token to return with the response to the client
+        ctx.response.cookie('token', token, {
+            httpOnly: true,
+            maxAge: 1000 * 60 * 60 * 24 * 365,
+        })
+
+        // return the user
+        return user
+    },
+    signout(parent, args, ctx, info) {
+        // usage of the cookie-parser module in index.js gives us access
+        // to the cookie data in the request and response along with
+        // the clearCookie method to remove a cookie from the response/request
+        ctx.response.clearCookie('token')
+        return {message: 'Goodbye'}
     }
 };
 

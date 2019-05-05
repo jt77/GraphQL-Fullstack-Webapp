@@ -15,6 +15,7 @@ const NavStyles = styled.ul`
     text-transform: uppercase;
     font-weight: 900;
     font-size: 1em;
+    font-family: 'radnika_next';
     background: none;
     border: 0;
     cursor: pointer;
